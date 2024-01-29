@@ -16,12 +16,15 @@ To check the accuracy and tune the hyperparameters of the model, I split the tra
 
 ## Model selection and hyperparameter tuning
 The dataset is highly dimensional, and the target variable is binary and imbalanced, so the model must be able to capture non-linear decision boundaries and handle high-dimension classification tasks. Therefore, I have chosen Random Forest, KNN, and Logistic Regression to perform the classification.  
+
 Initially, I compared each training model with rare data and the training data after oversampling. The results showed that using oversampling data to train the model can achieve better results. Therefore, I used oversampling for further training.
 To obtain higher **accuracy**, **AUC**, and **F1** scores, I need to optimize the model for the training data by tuning the hyperparameters. For KNN, the choice of the hyperparameter k can be the most important, so I will try the K value from 1 to 20 and then choose the K value with the highest F1 score. For Random Forest and Logistic Regression, I will first set a range of their important hyperparameters. In Random Forest, the most important two features are the number of decision trees in the forest and the number of features considered by each tree when splitting a node so I will set *'n_estimators’: [200, 400, 600, 800]* and *'max_features’: ['sqrt', 'log2', "auto", 10]*. The main hyperparameters I may tune in Logistic Regression are C and penalty, so I will set two penalties, which are “l1” and “l2,” and 5 C values. Then, I will import GridSearchCV from Scikit-Learn to perform all the model settings with 10-fold CV automatically and return the best combination of the hyperparameters.
 
 ## Results
 For Random Forest, with the best hyperparameters returned by GridSearchCV: {'max_features': 10, 'n_estimators': 200}, the accuracy score for validation is **97.07%** and the AUC is **81.82%**. The F1 score for 0 class is **0.98** and for 1 class is **0.57**, with an overall F1 score of **0.5676**.
+
 For KNN, the k value with the highest F1 score is 2. The KNN model with n_neighbors=2 returns an accuracy score of **94.22%** and an AUC of **74.30%**. The F1 score for the 0 class is **0.97** and for 1 class is **0.35** while the entire F1 score is **0.3505**.
+
 For logistic regression, I have the best hyperparameters: {'C': 100, 'penalty': 'l2'}. The accuracy score for validation is **89.92%** and the AUC is **88.75%**. The F1 score for the 0 class is **0.95** and for the 1 class is **0.34**, with an overall F1 score of **0.3373**. 
 
 
