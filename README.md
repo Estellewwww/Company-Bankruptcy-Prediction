@@ -1,3 +1,32 @@
+# Company Bankruptcy Prediction
+
+**Imbalanced classification · Boruta feature selection · SMOTE · Model comparison**
+
+An MF815 academic project comparing random forest, K-nearest neighbors, and logistic regression for company-bankruptcy classification using the provided financial dataset.
+
+## Explore
+
+| Resource | Purpose |
+| --- | --- |
+| [Analysis notebook](Company_Bankruptcy_Prediction.ipynb) | Preprocessing, feature selection, resampling, tuning, and evaluation |
+| [Project report](Company%20Bankruptcy%20Prediction.pdf) | Original written analysis |
+| [Training data](train.csv) / [Test data](test.csv) | Provided project inputs |
+
+## Workflow
+
+Data cleaning → Boruta feature selection → training/validation split → SMOTE → classifier comparison → test-set predictions.
+
+The original write-up reports validation accuracy, F1, and an AUC calculation. The notebook computes AUC from hard class predictions rather than probability scores. Feature selection is also performed before the validation split, and oversampling occurs before cross-validation, so those historical metrics should not be treated as independently validated generalization estimates.
+
+## Setup & scope
+
+Python with pandas, NumPy, Matplotlib, scikit-learn, imbalanced-learn, and Boruta. The notebook includes machine-specific file paths, legacy APIs, and cell-order dependencies that need adjustment before a clean run. The original code and outputs are preserved; they have not been rerun as part of this documentation update.
+
+For a future modeling revision, fit preprocessing and feature selection only on training folds, keep SMOTE inside each cross-validation fold, and evaluate probability-based ROC/PR metrics on an untouched holdout.
+
+<details>
+<summary><strong>Original project write-up and reported results</strong></summary>
+
 # Company Bankruptcy Prediction 
 ### Estelle Yang
 
@@ -38,3 +67,6 @@ The test data has 1364 samples and 96 variables. I applied the same feature sele
 ## Reference
 Kursa, M. B., & Rudnicki, W. R. (n.d.). Feature selection with the Boruta package. Journal of Statistical Software. Retrieved September 2010, from https://www.jstatsoft.org/article/view/v036i11 
 ![image](https://github.com/Estellewwww/Company-Bankruptcy-Prediction/assets/118770424/1edd69e4-d861-4c47-b032-da9df45479b9)
+
+
+</details>
